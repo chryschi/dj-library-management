@@ -5,10 +5,16 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <form action="/create" method="POST">
+    <form action="/0/update" method="POST">
       <div>
         <label for="title">Title: </label>
-        <input type="text" name="title" id="title" required />
+        <input
+          type="text"
+          name="title"
+          id="title"
+          value="<%= track.title %>"
+          required
+        />
       </div>
       <div>
         <label for="artist">Artist(s): </label>
@@ -16,6 +22,7 @@
           type="text"
           name="artist"
           id="artist"
+          value="<%= track.artist %>"
           placeholder="For multiple artists insert comma inbetween like so: Wilkinson, Becky Hill"
           required
         />
@@ -28,19 +35,19 @@
         </select>
       </div>
       <div>
-        <label for="key-camelot">Key (Camelot Wheel): </label>
-        <select name="keyCamelot" id="key-camelot">
+        <label for="key-camelot-select">Key (Camelot Wheel): </label>
+        <select name="keyCamelot" id="key-camelot-select">
           <option value="1B">1B</option>
           <option value="1A">1A</option>
         </select>
-        <label for="key">Key (Traditional): </label>
-        <select name="key" id="key">
+        <label for="key-select">Key (Traditional): </label>
+        <select name="key" id="key-select">
           <option value="1B">E</option>
           <option value="1A">Em</option>
         </select>
       </div>
       <label for="bpm">BPM: </label>
-      <input type="number" name="bpm" id="bpm" />
+      <input type="number" name="bpm" id="bpm" value="" />
 
       <fieldset>
         <legend>Choose purchased file formats:</legend>
@@ -52,7 +59,7 @@
         <input type="checkbox" name="purchasedLossless" id="lossless" />
       </fieldset>
 
-      <button type="submit">Submit Track Info</button>
+      <button type="submit">Update Track Info</button>
     </form>
   </body>
 </html>

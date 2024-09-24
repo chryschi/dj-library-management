@@ -1,5 +1,10 @@
 tracks = [
-  { title: "Afterglow", artist: "Wilkinson, Becky Hill", purchasedMp3: true },
+  {
+    id: 0,
+    title: "Afterglow",
+    artist: "Wilkinson, Becky Hill",
+    purchasedMp3: true,
+  },
 ];
 
 const createTrack = ({

@@ -19,7 +19,10 @@ exports.createTrackPost = (req, res) => {
 };
 
 exports.updateTrackGet = (req, res) => {
-  res.send("This is the page for updating track info");
+  res.render("updateTrack", {
+    title: "Update Track Info",
+    track: tracks[req.params.trackId],
+  });
 };
 
 exports.updateTrackPost = (req, res) => {

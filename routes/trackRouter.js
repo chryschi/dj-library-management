@@ -5,9 +5,9 @@ const trackRouter = Router();
 trackRouter.get("/", trackController.getAllTracksGet);
 trackRouter.get("/create", trackController.createTrackGet);
 trackRouter.post("/create", trackController.createTrackPost);
-trackRouter.get("/update", trackController.updateTrackGet);
-trackRouter.post("/update", trackController.updateTrackPost);
 
-trackRouter.get("/track/:trackId", trackController.viewTrackGet);
+trackRouter.get("/:trackId/update", trackController.updateTrackGet);
+trackRouter.post("/:trackId/update", trackController.updateTrackPost);
+// trackRouter.get("/:trackId", trackController.viewTrackGet);
 
 module.exports = trackRouter;
