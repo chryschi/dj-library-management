@@ -11,7 +11,7 @@ exports.viewTrackGet = (req, res) => {
 };
 
 exports.createTrackGet = (req, res) => {
-  res.send("This is the page for creating and submit tracks to the library");
+  res.render("createTrack", { title: "Create New Track" });
 };
 
 exports.createTrackPost = (req, res) => {

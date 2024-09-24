@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <form action="/create" method="POST">
+      <div>
+        <label for="title">Title: </label>
+        <input type="text" name="title" id="title" required />
+      </div>
+      <div>
+        <label for="artist">Artist(s): </label>
+        <input
+          type="text"
+          name="artist"
+          id="artist"
+          placeholder="For multiple artists insert comma inbetween like so: Wilkinson, Becky Hill"
+          required
+        />
+      </div>
+      <div>
+        <label for="mood-select">Mood: </label>
+        <select name="mood" id="mood-select">
+          <option value="joyful/cheerful">Joyful/Cheerful</option>
+          <option value="sad/depressing">Sad/Depressing</option>
+        </select>
+      </div>
+      <div>
+        <label for="key-camelot">Key (Camelot Wheel): </label>
+        <select name="keyCamelot" id="key-camelot">
+          <option value="1B">1B</option>
+          <option value="1A">1A</option>
+        </select>
+        <label for="key">Key (Traditional): </label>
+        <select name="key" id="key">
+          <option value="1B">E</option>
+          <option value="1A">Em</option>
+        </select>
+      </div>
+      <label for="bpm">BPM: </label>
+      <input type="number" name="bpm" id="bpm" />
+
+      <fieldset>
+        <legend>Choose purchased file formats:</legend>
+
+        <label for="mp3">mp3</label>
+        <input type="checkbox" name="purchasedMp3" id="mp3" />
+
+        <label for="lossless">lossless</label>
+        <input type="checkbox" name="purchasedLossless" id="lossless" />
+      </fieldset>
+
+      <button type="submit">Submit Track</button>
+    </form>
+  </body>
+</html>
