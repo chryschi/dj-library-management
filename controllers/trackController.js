@@ -11,7 +11,7 @@ exports.viewTrackGet = (req, res) => {
 };
 
 exports.createTrackGet = (req, res) => {
-  res.render("createTrack", { title: "Create New Track" });
+  res.render("trackCreate", { title: "Create New Track" });
 };
 
 exports.createTrackPost = (req, res) => {
@@ -19,7 +19,7 @@ exports.createTrackPost = (req, res) => {
 };
 
 exports.updateTrackGet = (req, res) => {
-  res.render("updateTrack", {
+  res.render("trackUpdate", {
     title: "Update Track Info",
     track: tracks[req.params.trackId],
   });
