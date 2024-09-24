@@ -1,5 +1,13 @@
+const tracks = require("../tracks");
+
 exports.getAllTracksGet = (req, res) => {
-  res.send("All tracks are displayed here");
+  res.render("index", { title: "DJ Library", tracks: tracks });
+};
+
+exports.viewTrackGet = (req, res) => {
+  res.send(
+    `Details about track with id ${req.params.trackId} will be displayed here`,
+  );
 };
 
 exports.createTrackGet = (req, res) => {
