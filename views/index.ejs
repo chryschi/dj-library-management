@@ -12,6 +12,15 @@
         <%= track.artist %>,
         <%= track.key %>,
         <%= track.bpm %>
+        <form
+          action="/<%= track.id %>/delete"
+          method="POST"
+          style="display: inline"
+        >
+          <button type="submit" onclick="return confirm('wanna delete?')">
+            Delete
+          </button>
+        </form>
       </li>
       <% }) %>
     </ul>

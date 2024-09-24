@@ -28,3 +28,7 @@ exports.updateTrackGet = (req, res) => {
 exports.updateTrackPost = (req, res) => {
   res.send("Changes would have been submitted to the database");
 };
+
+exports.deleteTrackPost = (req, res) => {
+  res.send("This track would have been deleted");
+};

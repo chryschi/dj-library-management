@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const trackRouter = require("./routes/trackRouter");
+const basicAuth = require("express-basic-auth");
 
 const app = express();
 
