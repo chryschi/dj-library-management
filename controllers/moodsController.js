@@ -9,7 +9,7 @@ exports.getMoodById = (req, res) => {
 
 exports.updateMoodPost = (req, res) => {
   const id = req.params.moodId;
-  res.send(`Mood with id ${id} updated`);
+  res.send(`Mood with id ${id} updated and also for all tracks with that mood`);
 };
 
 exports.createMoodGet = (req, res) => {
@@ -18,4 +18,10 @@ exports.createMoodGet = (req, res) => {
 
 exports.createMoodPost = (req, res) => {
   res.send(`New mood would be submitted`);
+};
+
+exports.deleteMoodPost = (req, res) => {
+  res.send(
+    "This would delete the selected mood from the database and also the entry for every track that had that mood",
+  );
 };
