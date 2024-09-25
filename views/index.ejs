@@ -11,7 +11,9 @@
         <%= track.title %>,
         <%= track.artist %>,
         <%= track.key %>,
-        <%= track.bpm %>
+        <%= track.bpm %>bpm
+        <%= track.mp3 ? ", mp3": "" %>
+        <%= track.lossless  ? ", lossless": ""%>
         <form
           action="/<%= track.id %>/delete"
           method="POST"

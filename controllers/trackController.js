@@ -4,8 +4,10 @@ const db = require("../db/queries");
 const convertUndefinedToFalse = (variable) =>
   variable === undefined ? false : variable;
 
-exports.getAllTracksGet = (req, res) => {
-  res.render("index", { title: "DJ Library", tracks: tracks });
+exports.getAllTracksGet = async (req, res) => {
+  const tracks = await db.getAllTracks();
+
+  res.render("index", { title: "DJ Library", tracks });
 };
 
 exports.viewTrackGet = (req, res) => {
