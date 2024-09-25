@@ -10,10 +10,9 @@ exports.getAllTracksGet = async (req, res) => {
   res.render("index", { title: "DJ Library", tracks });
 };
 
-exports.viewTrackGet = (req, res) => {
-  res.send(
-    `Details about track with id ${req.params.trackId} will be displayed here`,
-  );
+exports.viewTrackGet = async (req, res) => {
+  const track = await db.getTrackById(req.params.trackId);
+  res.render("trackView", { title: "Track Details", track });
 };
 
 exports.createTrackGet = async (req, res) => {

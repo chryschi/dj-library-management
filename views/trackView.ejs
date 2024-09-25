@@ -5,15 +5,10 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <ul>
-      <% tracks.map((track) =>{ %>
-      <li>
-        <%= track.title %>,
-        <%= track.artist %>,
-        <%= track.key %>,
-        <%= track.bpm %>
-      </li>
-      <% }) %>
-    </ul>
+    <p>
+      <%= track.title %>, <%= track.artist %>, <%= track.key %>, <%= track.bpm
+      %>bpm <%= track.mp3 ? ", mp3": "" %> <%= track.lossless ? ", lossless":
+      ""%>
+    </p>
   </body>
 </html>

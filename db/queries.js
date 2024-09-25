@@ -1,7 +1,6 @@
 const pool = require("./pool");
 
-const getAllTracks = async () => {
-  const { rows } = await pool.query(`
+const queryAllTrackInfo = `
 
     SELECT tracks.title AS title
     , tracks.artist AS artist
@@ -16,7 +15,10 @@ const getAllTracks = async () => {
     INNER JOIN track_mood ON tracks.id = track_mood.track_id
     INNER JOIN moods ON track_mood.mood_id = moods.id
     INNER JOIN keys ON track_key.key_id = keys.id
-    `);
+    `;
+
+const getAllTracks = async () => {
+  const { rows } = await pool.query(queryAllTrackInfo);
   return rows;
 };
 
@@ -28,6 +30,14 @@ const getAllMoods = async () => {
 const getAllKeys = async () => {
   const { rows } = await pool.query("SELECT * FROM keys");
   return rows;
+};
+
+const getTrackById = async (id) => {
+  const { rows } = await pool.query(
+    queryAllTrackInfo + " WHERE tracks.id = $1",
+    [id],
+  );
+  return rows[0];
 };
 
 const insertTrack = async ({
@@ -56,9 +66,11 @@ const insertTrack = async ({
     keyId,
   ]);
 };
+
 module.exports = {
   getAllMoods,
   getAllKeys,
   getAllTracks,
   insertTrack,
+  getTrackById,
 };
