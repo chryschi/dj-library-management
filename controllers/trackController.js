@@ -1,6 +1,9 @@
 const tracks = require("../tracks");
 const db = require("../db/queries");
 
+const convertUndefinedToFalse = (variable) =>
+  variable === undefined ? false : variable;
+
 exports.getAllTracksGet = (req, res) => {
   res.render("index", { title: "DJ Library", tracks: tracks });
 };
@@ -19,8 +22,22 @@ exports.createTrackGet = async (req, res) => {
 };
 
 exports.createTrackPost = async (req, res) => {
-  const { title, artist, bpm, purchasedMp3, purchasedLossless } = req.body;
-  await db.insertTrack({ title, artist, bpm, purchasedMp3, purchasedLossless });
+  let { title, artist, bpm, purchasedMp3, purchasedLossless, moodId, keyId } =
+    req.body;
+
+  bpm = bpm === "" ? null : bpm;
+  purchasedMp3 = convertUndefinedToFalse(purchasedMp3);
+  purchasedLossless = convertUndefinedToFalse(purchasedLossless);
+
+  await db.insertTrack({
+    title,
+    artist,
+    bpm,
+    mp3: purchasedMp3,
+    lossless: purchasedLossless,
+    moodId,
+    keyId,
+  });
 
   res.redirect("/");
 };

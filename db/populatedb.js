@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS tracks (
     artist VARCHAR ( 255 ) NOT NULL,
     bpm DECIMAL(3,0),
     purchased_mp3 BOOLEAN NOT NULL DEFAULT FALSE,
-    puchased_lossless BOOLEAN NOT NULL DEFAULT FALSE
+    purchased_lossless BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE IF NOT EXISTS moods (
