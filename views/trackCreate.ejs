@@ -22,9 +22,10 @@
       </div>
       <div>
         <label for="mood-select">Mood: </label>
-        <select name="mood" id="mood-select">
-          <option value="joyful/cheerful">Joyful/Cheerful</option>
-          <option value="sad/depressing">Sad/Depressing</option>
+        <select name="moodId" id="mood-select">
+          <% moods.map((mood) => { %>
+          <option value="<%= mood.id %>"><%= mood.mood %></option>
+          <% }); %>
         </select>
       </div>
       <div>

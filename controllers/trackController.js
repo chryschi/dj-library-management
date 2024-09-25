@@ -1,4 +1,5 @@
 const tracks = require("../tracks");
+const db = require("../db/queries");
 
 exports.getAllTracksGet = (req, res) => {
   res.render("index", { title: "DJ Library", tracks: tracks });
@@ -10,18 +11,25 @@ exports.viewTrackGet = (req, res) => {
   );
 };
 
-exports.createTrackGet = (req, res) => {
-  res.render("trackCreate", { title: "Create New Track" });
+exports.createTrackGet = async (req, res) => {
+  const moods = await db.getAllMoods();
+  res.render("trackCreate", { title: "Create New Track", moods: moods });
 };
 
-exports.createTrackPost = (req, res) => {
-  res.send("The track would have been submitted to the database");
+exports.createTrackPost = async (req, res) => {
+  const { title, artist, bpm, purchasedMp3, purchasedLossless } = req.body;
+  await db.insertTrack({ title, artist, bpm, purchasedMp3, purchasedLossless });
+
+  res.redirect("/");
 };
 
-exports.updateTrackGet = (req, res) => {
+exports.updateTrackGet = async (req, res) => {
+  const moods = await db.getAllMoods();
+
   res.render("trackUpdate", {
     title: "Update Track Info",
     track: tracks[req.params.trackId],
+    moods: moods,
   });
 };
 
