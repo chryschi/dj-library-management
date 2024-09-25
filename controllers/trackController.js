@@ -13,7 +13,9 @@ exports.viewTrackGet = (req, res) => {
 
 exports.createTrackGet = async (req, res) => {
   const moods = await db.getAllMoods();
-  res.render("trackCreate", { title: "Create New Track", moods: moods });
+  const keys = await db.getAllKeys();
+
+  res.render("trackCreate", { title: "Create New Track", moods, keys });
 };
 
 exports.createTrackPost = async (req, res) => {
@@ -25,11 +27,13 @@ exports.createTrackPost = async (req, res) => {
 
 exports.updateTrackGet = async (req, res) => {
   const moods = await db.getAllMoods();
+  const keys = await db.getAllKeys();
 
   res.render("trackUpdate", {
     title: "Update Track Info",
     track: tracks[req.params.trackId],
-    moods: moods,
+    moods,
+    keys,
   });
 };
 

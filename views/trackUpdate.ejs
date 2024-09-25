@@ -36,15 +36,13 @@
         </select>
       </div>
       <div>
-        <label for="key-camelot-select">Key (Camelot Wheel): </label>
-        <select name="keyCamelot" id="key-camelot-select">
-          <option value="1B">1B</option>
-          <option value="1A">1A</option>
-        </select>
-        <label for="key-select">Key (Traditional): </label>
-        <select name="key" id="key-select">
-          <option value="1B">E</option>
-          <option value="1A">Em</option>
+        <label for="key">Key</label>
+        <select name="keyId" id="key">
+          <% keys.map((key) => { %>
+          <option value="<%= key.id %>">
+            <%= key.key %>/<%= key.key_camelot%>
+          </option>
+          <% }); %>
         </select>
       </div>
       <label for="bpm">BPM: </label>
