@@ -27,24 +27,7 @@
           required
         />
       </div>
-      <div>
-        <label for="mood-select">Mood: </label>
-        <select name="moodId" id="mood-select">
-          <% moods.map((mood) => { %>
-          <option value="<%= mood.id %>" <%= track.moodId == mood.id ? "selected" : "" %> ><%= mood.mood %></option>
-          <% }); %>
-        </select>
-      </div>
-      <div>
-        <label for="key">Key</label>
-        <select name="keyId" id="key">
-          <% keys.map((key) => { %>
-          <option value="<%= key.id %>" <%= track.keyId == key.id ? "selected" : "" %> >
-            <%= key.key %>/<%= key.key_camelot%>
-          </option>
-          <% }); %>
-        </select>
-      </div>
+      <%- include("partials/dropdowns/keyMoodDropdown.ejs", {track, moods, keys}) %>
       <label for="bpm">BPM: </label>
       <input type="number" name="bpm" id="bpm" value="<%= track.bpm %>" />
 

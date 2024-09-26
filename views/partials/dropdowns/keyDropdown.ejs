@@ -1,0 +1,6 @@
+<label for="key">Key</label>
+<select name="keyId" id="key">
+  <% keys.map((key) => { %>
+  <option value="<%= key.id %>"><%= key.key %>/<%= key.key_camelot%></option>
+  <% }); %>
+</select>

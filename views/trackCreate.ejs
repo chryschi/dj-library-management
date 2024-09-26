@@ -21,22 +21,10 @@
         />
       </div>
       <div>
-        <label for="mood-select">Mood: </label>
-        <select name="moodId" id="mood-select">
-          <% moods.map((mood) => { %>
-          <option value="<%= mood.id %>"><%= mood.mood %></option>
-          <% }); %>
-        </select>
+        <%- include("partials/dropdowns/moodDropdown", {moods}) %>
       </div>
       <div>
-        <label for="key">Key</label>
-        <select name="keyId" id="key">
-          <% keys.map((key) => { %>
-          <option value="<%= key.id %>">
-            <%= key.key %>/<%= key.key_camelot%>
-          </option>
-          <% }); %>
-        </select>
+        <%- include("partials/dropdowns/keyDropdown", {keys}) %>
       </div>
       <label for="bpm">BPM: </label>
       <input type="number" name="bpm" id="bpm" />
