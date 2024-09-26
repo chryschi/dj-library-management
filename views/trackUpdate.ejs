@@ -5,7 +5,7 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <form action="tracks/0/update" method="POST">
+    <form action="/tracks/<%= track.id %>/update" method="POST">
       <div>
         <label for="title">Title: </label>
         <input
@@ -31,7 +31,7 @@
         <label for="mood-select">Mood: </label>
         <select name="moodId" id="mood-select">
           <% moods.map((mood) => { %>
-          <option value="<%= mood.id %>"><%= mood.mood %></option>
+          <option value="<%= mood.id %>" <%= track.moodId == mood.id ? "selected" : "" %> ><%= mood.mood %></option>
           <% }); %>
         </select>
       </div>
@@ -39,20 +39,20 @@
         <label for="key">Key</label>
         <select name="keyId" id="key">
           <% keys.map((key) => { %>
-          <option value="<%= key.id %>">
+          <option value="<%= key.id %>" <%= track.keyId == key.id ? "selected" : "" %> >
             <%= key.key %>/<%= key.key_camelot%>
           </option>
           <% }); %>
         </select>
       </div>
       <label for="bpm">BPM: </label>
-      <input type="number" name="bpm" id="bpm" value="" />
+      <input type="number" name="bpm" id="bpm" value="<%= track.bpm %>" />
 
       <fieldset>
         <legend>Choose purchased file formats:</legend>
 
         <label for="mp3">mp3</label>
-        <input type="checkbox" name="purchasedMp3" id="mp3" value="true" />
+        <input type="checkbox" name="purchasedMp3" id="mp3" value="true" <%= track.mp3 ? "checked" : "" %> />
 
         <label for="lossless">lossless</label>
         <input
@@ -60,6 +60,7 @@
           name="purchasedLossless"
           id="lossless"
           value="true"
+          <%= track.lossless ? "checked" : "" %>
         />
       </fieldset>
 

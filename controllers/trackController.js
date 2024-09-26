@@ -44,19 +44,41 @@ exports.createTrackPost = async (req, res) => {
 };
 
 exports.updateTrackGet = async (req, res) => {
+  const trackId = req.params.trackId;
   const moods = await db.getAllMoods();
   const keys = await db.getAllKeys();
+  const track = await db.getTrackById(trackId);
+  const keyId = await db.getKeyIdByTrackId(trackId);
+  const moodId = await db.getMoodIdByTrackId(trackId);
 
   res.render("trackUpdate", {
     title: "Update Track Info",
-    track: tracks[req.params.trackId],
+    track: { ...track, keyId, moodId, id: trackId },
     moods,
     keys,
   });
 };
 
-exports.updateTrackPost = (req, res) => {
-  res.send("Changes would have been submitted to the database");
+exports.updateTrackPost = async (req, res) => {
+  const trackId = req.params.trackId;
+  let { title, artist, bpm, purchasedMp3, purchasedLossless, moodId, keyId } =
+    req.body;
+  bpm = bpm === "" ? null : bpm;
+  purchasedMp3 = convertUndefinedToFalse(purchasedMp3);
+  purchasedLossless = convertUndefinedToFalse(purchasedLossless);
+
+  await db.updateTrack({
+    id: trackId,
+    title,
+    artist,
+    bpm,
+    mp3: purchasedMp3,
+    lossless: purchasedLossless,
+    moodId,
+    keyId,
+  });
+
+  res.redirect("/");
 };
 
 exports.deleteTrackPost = (req, res) => {

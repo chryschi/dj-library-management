@@ -1,6 +1,6 @@
 const pool = require("./pool");
 
-const queryAllTrackInfo = `
+const queryTrackDisplayInfo = `
 
     SELECT tracks.title AS title
     , tracks.artist AS artist
@@ -18,8 +18,16 @@ const queryAllTrackInfo = `
     `;
 
 const getAllTracks = async () => {
-  const { rows } = await pool.query(queryAllTrackInfo);
+  const { rows } = await pool.query(queryTrackDisplayInfo);
   return rows;
+};
+
+const getTrackById = async (id) => {
+  const { rows } = await pool.query(
+    queryTrackDisplayInfo + " WHERE tracks.id = $1",
+    [id],
+  );
+  return rows[0];
 };
 
 const getAllMoods = async () => {
@@ -30,14 +38,6 @@ const getAllMoods = async () => {
 const getAllKeys = async () => {
   const { rows } = await pool.query("SELECT * FROM keys");
   return rows;
-};
-
-const getTrackById = async (id) => {
-  const { rows } = await pool.query(
-    queryAllTrackInfo + " WHERE tracks.id = $1",
-    [id],
-  );
-  return rows[0];
 };
 
 const insertTrack = async ({
@@ -67,10 +67,60 @@ const insertTrack = async ({
   ]);
 };
 
+const updateTrack = async ({
+  id,
+  title,
+  artist,
+  bpm,
+  mp3,
+  lossless,
+  moodId,
+  keyId,
+}) => {
+  await pool.query(
+    `
+        UPDATE tracks 
+        SET title = $1, artist = $2, bpm = $3, purchased_mp3 = $4, purchased_lossless = $5
+        WHERE id = $6
+        `,
+    [title, artist, bpm, mp3, lossless, id],
+  );
+
+  await pool.query("UPDATE track_mood SET mood_id = $1 WHERE track_id = $2", [
+    moodId,
+    id,
+  ]);
+
+  await pool.query("UPDATE track_key SET key_id = $1 WHERE track_id = $2", [
+    keyId,
+    id,
+  ]);
+};
+
+const getMoodIdByTrackId = async (id) => {
+  const { rows } = await pool.query(
+    "SELECT mood_id AS id FROM track_mood WHERE track_id = $1",
+    [id],
+  );
+
+  return rows[0].id;
+};
+
+const getKeyIdByTrackId = async (id) => {
+  const { rows } = await pool.query(
+    "SELECT key_id AS id FROM track_key WHERE track_id = $1",
+    [id],
+  );
+  return rows[0].id;
+};
+
 module.exports = {
   getAllMoods,
   getAllKeys,
   getAllTracks,
   insertTrack,
   getTrackById,
+  updateTrack,
+  getKeyIdByTrackId,
+  getMoodIdByTrackId,
 };
