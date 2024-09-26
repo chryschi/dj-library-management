@@ -1,0 +1,14 @@
+.dropdown-menu-container {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+}
+
+.dropdown-menu-container:hover .dropdown-menu {
+  display: flex;
+  flex-direction: column;
+}

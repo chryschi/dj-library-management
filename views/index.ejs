@@ -2,6 +2,7 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link href="/assets/css/index.css" rel="stylesheet" />
   </head>
   <body>
     <h1><%= title %></h1>
@@ -14,18 +15,26 @@
         <%= track.bpm %>bpm
         <%= track.mp3 ? ", mp3": "" %>
         <%= track.lossless  ? ", lossless": ""%>
-        <form
-          action="/tracks/<%= track.id %>/delete"
-          method="POST"
-          style="display: inline"
-        >
-          <button
-            type="submit"
-            onclick="return confirm('wanna delete? all double drop connections and matching song connections will also be deleted')"
-          >
-            Delete
-          </button>
-        </form>
+        <div class="dropdown-menu-container">
+          <button>...</button>
+          <div class="dropdown-menu">
+            <a href="/tracks/<%= track.id %>">Show track details</a>
+            <a href="/tracks/<%= track.id %>/update">Change track info</a>
+
+            <form
+              action="/tracks/<%= track.id %>/delete"
+              method="POST"
+              style="display: inline"
+            >
+              <button
+                type="submit"
+                onclick="return confirm('wanna delete? all double drop connections and matching song connections will also be deleted')"
+              >
+                Delete
+              </button>
+            </form>
+          </div>
+        </div>
       </li>
       <% }) %>
     </ul>
