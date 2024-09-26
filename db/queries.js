@@ -1,8 +1,8 @@
 const pool = require("./pool");
 
-const queryTrackDisplayInfo = `
-
-    SELECT tracks.title AS title
+const queryTrackInfo = `
+    SELECT tracks.id AS id
+    , tracks.title AS title
     , tracks.artist AS artist
     , tracks.bpm AS bpm
     , tracks.purchased_mp3 AS mp3
@@ -18,15 +18,14 @@ const queryTrackDisplayInfo = `
     `;
 
 const getAllTracks = async () => {
-  const { rows } = await pool.query(queryTrackDisplayInfo);
+  const { rows } = await pool.query(queryTrackInfo);
   return rows;
 };
 
 const getTrackById = async (id) => {
-  const { rows } = await pool.query(
-    queryTrackDisplayInfo + " WHERE tracks.id = $1",
-    [id],
-  );
+  const { rows } = await pool.query(queryTrackInfo + " WHERE tracks.id = $1", [
+    id,
+  ]);
   return rows[0];
 };
 
@@ -114,6 +113,15 @@ const getKeyIdByTrackId = async (id) => {
   return rows[0].id;
 };
 
+const deleteTrack = async (id) => {
+  // remove track-mood relationship in database
+  await pool.query("DELETE FROM track_mood WHERE track_id = $1", [id]);
+  // remove track-key relationship in database
+  await pool.query("DELETE FROM track_key WHERE track_id = $1", [id]);
+
+  await pool.query("DELETE FROM tracks WHERE id = $1", [id]);
+};
+
 module.exports = {
   getAllMoods,
   getAllKeys,
@@ -123,4 +131,5 @@ module.exports = {
   updateTrack,
   getKeyIdByTrackId,
   getMoodIdByTrackId,
+  deleteTrack,
 };

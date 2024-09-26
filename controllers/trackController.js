@@ -80,6 +80,7 @@ exports.updateTrackPost = async (req, res) => {
   res.redirect("/");
 };
 
-exports.deleteTrackPost = (req, res) => {
-  res.send("This track would have been deleted");
+exports.deleteTrackPost = async (req, res) => {
+  await db.deleteTrack(req.params.trackId);
+  res.redirect("/");
 };

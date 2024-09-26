@@ -15,11 +15,14 @@
         <%= track.mp3 ? ", mp3": "" %>
         <%= track.lossless  ? ", lossless": ""%>
         <form
-          action="/<%= track.id %>/delete"
+          action="/tracks/<%= track.id %>/delete"
           method="POST"
           style="display: inline"
         >
-          <button type="submit" onclick="return confirm('wanna delete?')">
+          <button
+            type="submit"
+            onclick="return confirm('wanna delete? all double drop connections and matching song connections will also be deleted')"
+          >
             Delete
           </button>
         </form>
