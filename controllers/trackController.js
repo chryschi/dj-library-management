@@ -1,4 +1,3 @@
-const tracks = require("../tracks");
 const db = require("../db/queries");
 
 const convertUndefinedToFalse = (variable) =>
