@@ -122,6 +122,14 @@ const deleteTrack = async (id) => {
   await pool.query("DELETE FROM tracks WHERE id = $1", [id]);
 };
 
+const getTracksByString = async (str) => {
+  const { rows } = await pool.query(
+    queryTrackInfo + " WHERE title ILIKE $1 OR artist ILIKE $1",
+    ["%" + str + "%"],
+  );
+  return rows;
+};
+
 module.exports = {
   getAllMoods,
   getAllKeys,
@@ -132,4 +140,5 @@ module.exports = {
   getKeyIdByTrackId,
   getMoodIdByTrackId,
   deleteTrack,
+  getTracksByString,
 };

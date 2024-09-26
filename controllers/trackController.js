@@ -4,9 +4,14 @@ const convertUndefinedToFalse = (variable) =>
   variable === undefined ? false : variable;
 
 exports.getAllTracksGet = async (req, res) => {
-  const tracks = await db.getAllTracks();
-
-  res.render("index", { title: "DJ Library", tracks });
+  let tracks;
+  console.log(req.query);
+  if (req.query.search) {
+    tracks = await db.getTracksByString(req.query.search);
+  } else {
+    tracks = await db.getAllTracks();
+  }
+  res.render("tracks", { title: "DJ Library", tracks });
 };
 
 exports.viewTrackGet = async (req, res) => {
