@@ -122,10 +122,15 @@ const deleteTrack = async (id) => {
   await pool.query("DELETE FROM tracks WHERE id = $1", [id]);
 };
 
-const getTracksByString = async (str) => {
+const getTracksBySearch = async ({ str, moodId, keyId }) => {
+  const queryStr = " (title ILIKE $1 OR artist ILIKE $1)";
+  const queryMood =
+    moodId === "" ? " AND $2 = $2" : " AND track_mood.mood_id = $2";
+  const queryKey = keyId === "" ? " AND $3 = $3" : " AND track_key.key_id = $3";
+
   const { rows } = await pool.query(
-    queryTrackInfo + " WHERE title ILIKE $1 OR artist ILIKE $1",
-    ["%" + str + "%"],
+    queryTrackInfo + " WHERE" + queryStr + queryMood + queryKey,
+    ["%" + str + "%", moodId, keyId],
   );
   return rows;
 };
@@ -140,5 +145,5 @@ module.exports = {
   getKeyIdByTrackId,
   getMoodIdByTrackId,
   deleteTrack,
-  getTracksByString,
+  getTracksBySearch,
 };

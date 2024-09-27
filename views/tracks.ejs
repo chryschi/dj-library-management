@@ -12,13 +12,38 @@
       type="search"
       name="search-track"
       id="search-track"
+      value="<%= selectedFilter.str %>"
       placeholder="Search Track"
       aria-label="Search through all tracks"
     />
 
-    <%- include("partials/dropdowns/moodDropdown.ejs", {moods}) %>
+    <div>
+      <label for="mood-select">Mood: </label>
+      <select name="moodId" id="mood-select">
+        <option value="">any</option>
+        <% moods.map((mood) => { %>
+        <option value="<%= mood.id %>" 
+          <%= selectedFilter.moodId  == mood.id ? "selected" : "" %>
+        >
+          <%= mood.mood %>
+        </option>
+        <% }); %>
+      </select>
+    </div>
+    <div>
+      <label for="key-select">Key</label>
+      <select name="keyId" id="key-select">
+        <option value="">any</option>
 
-    <%- include("partials/dropdowns/keyDropdown.ejs", {keys}) %>
+        <% keys.map((key) => { %>
+        <option value="<%= key.id %>" 
+          <%= selectedFilter.keyId  == key.id ? "selected" : "" %>
+        >
+          <%= key.key %>/<%= key.key_camelot%>
+        </option>
+        <% }); %>
+      </select>
+    </div>
 
     <% if (tracks.length === 0) { %>
     <p>No tracks found</p>
@@ -28,15 +53,17 @@
 
     <script>
       const searchElement = document.querySelector("#search-track");
+      searchElement.onchange = (e) =>
+        (location.href = `/tracks/?str=${searchElement.value}&keyId=${keyDropdown.value}&moodId=${moodDropdown.value}`);
+
       const moodDropdown = document.querySelector("#mood-select");
+      moodDropdown.onchange = (e) =>
+        (location.href = `/tracks/?str=${searchElement.value}&keyId=${keyDropdown.value}&moodId=${e.target.value}`);
+
       const keyDropdown = document.querySelector("#key-select");
+      keyDropdown.onchange = (e) =>
+        (location.href = `/tracks/?str=${searchElement.value}&keyId=${e.target.value}&moodId=${moodDropdown.value}`);
 
-      const setUrl = (e) =>
-        (location.href = `/tracks/?search=${e.target.value}?key=${keyDropdown.value}?mood=${moodDropdown.value}`);
-
-      searchElement.onchange = (e) => setUrl(e);
-      moodDropdown.onchange = (e) => setUrl(e);
-      keyDropdown.onchange = (e) => setUrl(e);
     </script>
   </body>
 </html>

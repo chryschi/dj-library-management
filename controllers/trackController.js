@@ -5,17 +5,28 @@ const convertUndefinedToFalse = (variable) =>
 
 exports.getAllIndexInfo = async (req, res) => {
   let tracks;
+  const { str, keyId, moodId } = req.query;
+  console.log(req.query);
 
-  if (req.query.search) {
-    tracks = await db.getTracksByString(req.query.search);
+  if (str !== undefined || keyId !== undefined || moodId !== undefined) {
+    tracks = await db.getTracksBySearch({ str, keyId, moodId });
   } else {
     tracks = await db.getAllTracks();
   }
 
+  const selectedFilter = { str, keyId, moodId };
+
   const keys = await db.getAllKeys();
   const moods = await db.getAllMoods();
+  console.log(tracks);
 
-  res.render("tracks", { title: "DJ Library", tracks, keys, moods });
+  res.render("tracks", {
+    title: "DJ Library",
+    tracks,
+    keys,
+    moods,
+    selectedFilter,
+  });
 };
 
 exports.viewTrackGet = async (req, res) => {
