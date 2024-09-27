@@ -3,56 +3,66 @@
   <head>
     <title><%= title %></title>
     <link rel="stylesheet" href="/assets/css/index.css" />
+
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <main>
+    <div>
       <nav>
         <button><a href="/tracks">Back</a></button>
       </nav>
       <header>
         <h1><%= title %></h1>
       </header>
-      <form action="/tracks/create" method="POST">
-        <div>
-          <label for="title">Title: </label>
-          <input type="text" name="title" id="title" required />
-        </div>
-        <div>
-          <label for="artist">Artist(s): </label>
-          <input
-            type="text"
-            name="artist"
-            id="artist"
-            placeholder="For multiple artists insert comma inbetween like so: Wilkinson, Becky Hill"
-            required
-          />
-        </div>
-        <div>
-          <%- include("partials/dropdowns/moodDropdown", {moods}) %>
-        </div>
-        <div>
-          <%- include("partials/dropdowns/keyDropdown", {keys}) %>
-        </div>
-        <label for="bpm">BPM: </label>
-        <input type="number" name="bpm" id="bpm" />
+      <main>
+        <form action="/tracks/create" method="POST">
+          <div>
+            <label for="title">Title: </label>
+            <input type="text" name="title" id="title" required />
+          </div>
+          <div>
+            <label for="artist">Artist(s): </label>
+            <input
+              type="text"
+              name="artist"
+              id="artist"
+              placeholder="For multiple artists insert comma inbetween like so: Wilkinson, Becky Hill"
+              required
+            />
+          </div>
+          <div>
+            <%- include("partials/dropdowns/moodDropdown", {moods}) %>
+          </div>
+          <div>
+            <%- include("partials/dropdowns/keyDropdown", {keys}) %>
+          </div>
+          <label for="bpm">BPM: </label>
+          <input type="number" name="bpm" id="bpm" />
 
-        <fieldset>
-          <legend>Choose purchased file formats:</legend>
+          <fieldset>
+            <legend>Choose purchased file formats:</legend>
 
-          <label for="mp3">mp3</label>
-          <input type="checkbox" name="purchasedMp3" id="mp3" value="true" />
+            <label for="mp3">mp3</label>
+            <input type="checkbox" name="purchasedMp3" id="mp3" value="true" />
 
-          <label for="lossless">lossless</label>
-          <input
-            type="checkbox"
-            name="purchasedLossless"
-            id="lossless"
-            value="true"
-          />
-        </fieldset>
+            <label for="lossless">lossless</label>
+            <input
+              type="checkbox"
+              name="purchasedLossless"
+              id="lossless"
+              value="true"
+            />
+          </fieldset>
 
-        <button type="submit">Submit Track Info</button>
-      </form>
-    </main>
+          <button class="form-submit" type="submit">Submit Track Info</button>
+        </form>
+      </main>
+    </div>
   </body>
 </html>

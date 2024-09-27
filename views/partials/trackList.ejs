@@ -1,13 +1,12 @@
 <ul class="trackList">
   <% tracks.map((track) =>{ %>
   <li>
-    <%= track.title %>,
-    <%= track.artist %>,
-    <%= track.key %>,
-    <%= track.bpm
-    %>bpm
-    <%= track.mp3 ? ", mp3": "" %>
-    <%= track.lossless ? ", lossless": ""%>
+    <div><%= track.title %></div>
+    <div><%= track.artist %></div>
+    <div><%= track.key %></div>
+    <div><%= track.bpm %>bpm</div>
+    <div><%= track.mp3 ? " mp3": "" %></div>
+    <div><%= track.lossless ? " lossless": ""%></div>
     <div class="dropdown-menu-container">
       <button>...</button>
       <div class="dropdown-menu">
@@ -21,6 +20,7 @@
         >
           <button
             type="submit"
+            class="delete"
             onclick="return confirm('wanna delete? all double drop connections and matching song connections will also be deleted')"
           >
             Delete
