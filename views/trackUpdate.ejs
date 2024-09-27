@@ -2,53 +2,60 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link rel="stylesheet" href="/assets/css/index.css" />
   </head>
   <body>
-    <button><a href="/tracks">Back</a></button>
-    <h1><%= title %></h1>
-    <form action="/tracks/<%= track.id %>/update" method="POST">
-      <div>
-        <label for="title">Title: </label>
-        <input
-          type="text"
-          name="title"
-          id="title"
-          value="<%= track.title %>"
-          required
-        />
-      </div>
-      <div>
-        <label for="artist">Artist(s): </label>
-        <input
-          type="text"
-          name="artist"
-          id="artist"
-          value="<%= track.artist %>"
-          placeholder="For multiple artists insert comma inbetween like so: Wilkinson, Becky Hill"
-          required
-        />
-      </div>
-      <%- include("partials/dropdowns/keyMoodDropdown.ejs", {track, moods, keys}) %>
-      <label for="bpm">BPM: </label>
-      <input type="number" name="bpm" id="bpm" value="<%= track.bpm %>" />
+    <main>
+      <nav>
+        <button><a href="/tracks">Back</a></button>
+      </nav>
+      <header>
+        <h1><%= title %></h1>
+      </header>
+      <form action="/tracks/<%= track.id %>/update" method="POST">
+        <div>
+          <label for="title">Title: </label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            value="<%= track.title %>"
+            required
+          />
+        </div>
+        <div>
+          <label for="artist">Artist(s): </label>
+          <input
+            type="text"
+            name="artist"
+            id="artist"
+            value="<%= track.artist %>"
+            placeholder="For multiple artists insert comma inbetween like so: Wilkinson, Becky Hill"
+            required
+          />
+        </div>
+        <%- include("partials/dropdowns/keyMoodDropdown.ejs", {track, moods, keys}) %>
+        <label for="bpm">BPM: </label>
+        <input type="number" name="bpm" id="bpm" value="<%= track.bpm %>" />
 
-      <fieldset>
-        <legend>Choose purchased file formats:</legend>
+        <fieldset>
+          <legend>Choose purchased file formats:</legend>
 
-        <label for="mp3">mp3</label>
-        <input type="checkbox" name="purchasedMp3" id="mp3" value="true" <%= track.mp3 ? "checked" : "" %> />
+          <label for="mp3">mp3</label>
+          <input type="checkbox" name="purchasedMp3" id="mp3" value="true" <%= track.mp3 ? "checked" : "" %>/>
 
-        <label for="lossless">lossless</label>
-        <input
-          type="checkbox"
-          name="purchasedLossless"
-          id="lossless"
-          value="true"
-          <%= track.lossless ? "checked" : "" %>
-        />
-      </fieldset>
+          <label for="lossless">lossless</label>
+          <input
+            type="checkbox"
+            name="purchasedLossless"
+            id="lossless"
+            value="true"
+            <%= track.lossless ? "checked" : "" %>
+          />
+        </fieldset>
 
-      <button type="submit">Update Track Info</button>
-    </form>
+        <button type="submit">Update Track Info</button>
+      </form>
+    </main>
   </body>
 </html>
