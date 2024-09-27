@@ -16,6 +16,10 @@
       aria-label="Search through all tracks"
     />
 
+    <%- include("partials/dropdowns/moodDropdown.ejs", {moods}) %>
+
+    <%- include("partials/dropdowns/keyDropdown.ejs", {keys}) %>
+
     <% if (tracks.length === 0) { %>
     <p>No tracks found</p>
     <% } else { %>
@@ -24,8 +28,15 @@
 
     <script>
       const searchElement = document.querySelector("#search-track");
-      searchElement.onchange = (e) =>
-        (location.href = `/tracks/?search=${e.target.value}`);
+      const moodDropdown = document.querySelector("#mood-select");
+      const keyDropdown = document.querySelector("#key-select");
+
+      const setUrl = (e) =>
+        (location.href = `/tracks/?search=${e.target.value}?key=${keyDropdown.value}?mood=${moodDropdown.value}`);
+
+      searchElement.onchange = (e) => setUrl(e);
+      moodDropdown.onchange = (e) => setUrl(e);
+      keyDropdown.onchange = (e) => setUrl(e);
     </script>
   </body>
 </html>

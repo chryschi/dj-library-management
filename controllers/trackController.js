@@ -3,15 +3,19 @@ const db = require("../db/queries");
 const convertUndefinedToFalse = (variable) =>
   variable === undefined ? false : variable;
 
-exports.getAllTracksGet = async (req, res) => {
+exports.getAllIndexInfo = async (req, res) => {
   let tracks;
-  console.log(req.query);
+
   if (req.query.search) {
     tracks = await db.getTracksByString(req.query.search);
   } else {
     tracks = await db.getAllTracks();
   }
-  res.render("tracks", { title: "DJ Library", tracks });
+
+  const keys = await db.getAllKeys();
+  const moods = await db.getAllMoods();
+
+  res.render("tracks", { title: "DJ Library", tracks, keys, moods });
 };
 
 exports.viewTrackGet = async (req, res) => {

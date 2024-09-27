@@ -4,7 +4,7 @@ const basicAuth = require("express-basic-auth");
 
 const trackRouter = Router();
 
-trackRouter.get("/", trackController.getAllTracksGet);
+trackRouter.get("/", trackController.getAllIndexInfo);
 trackRouter.get("/create", trackController.createTrackGet);
 trackRouter.post("/create", trackController.createTrackPost);
 
