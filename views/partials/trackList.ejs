@@ -1,12 +1,13 @@
-<ul>
+<ul class="trackList">
   <% tracks.map((track) =>{ %>
   <li>
     <%= track.title %>,
     <%= track.artist %>,
     <%= track.key %>,
-    <%= track.bpm %>bpm
+    <%= track.bpm
+    %>bpm
     <%= track.mp3 ? ", mp3": "" %>
-    <%= track.lossless  ? ", lossless": ""%>
+    <%= track.lossless ? ", lossless": ""%>
     <div class="dropdown-menu-container">
       <button>...</button>
       <div class="dropdown-menu">

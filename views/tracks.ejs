@@ -5,52 +5,59 @@
     <link href="/assets/css/index.css" rel="stylesheet" />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <button><a href="/tracks/create">New Track</a></button>
+    <main>
+      <header>
+        <h1><%= title %></h1>
+        <button><a href="/tracks/create">New Track</a></button>
+      </header>
 
-    <input
-      type="search"
-      name="search-track"
-      id="search-track"
-      value="<%= selectedFilter.str %>"
-      placeholder="Search Track"
-      aria-label="Search through all tracks"
-    />
+      <div class="searchbar">
+        <input
+          type="search"
+          name="search-track"
+          id="search-track"
+          value="<%= selectedFilter.str %>"
+          placeholder="Search Track"
+          aria-label="Search through all tracks"
+        />
+      </div>
 
-    <div>
-      <label for="mood-select">Mood: </label>
-      <select name="moodId" id="mood-select">
-        <option value="">any</option>
-        <% moods.map((mood) => { %>
-        <option value="<%= mood.id %>" 
-          <%= selectedFilter.moodId  == mood.id ? "selected" : "" %>
-        >
-          <%= mood.mood %>
-        </option>
-        <% }); %>
-      </select>
-    </div>
-    <div>
-      <label for="key-select">Key</label>
-      <select name="keyId" id="key-select">
-        <option value="">any</option>
+      <div class="filter">
+        <div>
+          <label for="mood-select">Mood: </label>
+          <select name="moodId" id="mood-select">
+            <option value="">any</option>
+            <% moods.map((mood) => { %>
+            <option value="<%= mood.id %>" 
+              <%= selectedFilter.moodId  == mood.id ? "selected" : "" %>
+            >
+              <%= mood.mood %>
+            </option>
+            <% }); %>
+          </select>
+        </div>
+        <div>
+          <label for="key-select">Key</label>
+          <select name="keyId" id="key-select">
+            <option value="">any</option>
 
-        <% keys.map((key) => { %>
-        <option value="<%= key.id %>" 
-          <%= selectedFilter.keyId  == key.id ? "selected" : "" %>
-        >
-          <%= key.key %>/<%= key.key_camelot%>
-        </option>
-        <% }); %>
-      </select>
-    </div>
+            <% keys.map((key) => { %>
+            <option value="<%= key.id %>" 
+              <%= selectedFilter.keyId  == key.id ? "selected" : "" %>
+            >
+              <%= key.key %>/<%= key.key_camelot%>
+            </option>
+            <% }); %>
+          </select>
+        </div>
+      </div>
 
-    <% if (tracks.length === 0) { %>
-    <p>No tracks found</p>
-    <% } else { %>
-    <%- include("partials/trackList.ejs", {tracks}) %>
-    <% } %>
-
+      <% if (tracks.length === 0) { %>
+        <p>No tracks found</p>
+      <% } else { %>
+        <%- include("partials/trackList.ejs", {tracks}) %>
+      <% } %>
+    </main>
     <script>
       const searchElement = document.querySelector("#search-track");
       searchElement.onchange = (e) =>
