@@ -2,6 +2,8 @@
 <html>
   <head>
     <title><%= title %></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/assets/css/index.css" />
 
     <!--Google fonts-->
@@ -21,32 +23,34 @@
         <h1><%= title %></h1>
       </header>
       <main>
-        <form action="/tracks/create" method="POST">
-          <div>
-            <label for="title">Title: </label>
-            <input type="text" name="title" id="title" required />
-          </div>
-          <div>
-            <label for="artist">Artist(s): </label>
-            <input
-              type="text"
-              name="artist"
-              id="artist"
-              placeholder="For multiple artists insert comma inbetween like so: Wilkinson, Becky Hill"
-              required
-            />
-          </div>
-          <div>
-            <%- include("partials/dropdowns/moodDropdown", {moods}) %>
-          </div>
-          <div>
-            <%- include("partials/dropdowns/keyDropdown", {keys}) %>
-          </div>
-          <label for="bpm">BPM: </label>
+        <form class="track-form" action="/tracks/create" method="POST">
+          <label for="title">Title</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            placeholder="Afterglow"
+            required
+          />
+
+          <label for="artist">Artist(s) </label>
+          <input
+            type="text"
+            name="artist"
+            id="artist"
+            placeholder="Wilkinson, Becky Hill"
+            required
+          />
+
+          <%- include("partials/dropdowns/moodDropdown", {moods}) %>
+
+          <%- include("partials/dropdowns/keyDropdown", {keys}) %>
+
+          <label for="bpm">BPM</label>
           <input type="number" name="bpm" id="bpm" />
 
           <fieldset>
-            <legend>Choose purchased file formats:</legend>
+            <legend>Choose purchased file formats</legend>
 
             <label for="mp3">mp3</label>
             <input type="checkbox" name="purchasedMp3" id="mp3" value="true" />

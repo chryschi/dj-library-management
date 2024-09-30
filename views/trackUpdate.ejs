@@ -2,6 +2,8 @@
 <html>
   <head>
     <title><%= title %></title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/assets/css/index.css" />
 
     <!--Google fonts-->
@@ -18,9 +20,9 @@
         <h1><%= title %></h1>
       </header>
       <main>
-        <form action="/tracks/<%= track.id %>/update" method="POST">
-          <div>
-            <label for="title">Title: </label>
+        <form class="track-form" action="/tracks/<%= track.id %>/update" method="POST">
+        
+            <label for="title">Title</label>
             <input
               type="text"
               name="title"
@@ -28,9 +30,9 @@
               value="<%= track.title %>"
               required
             />
-          </div>
-          <div>
-            <label for="artist">Artist(s): </label>
+          
+          
+            <label for="artist">Artist(s)</label>
             <input
               type="text"
               name="artist"
@@ -39,9 +41,9 @@
               placeholder="For multiple artists insert comma inbetween like so: Wilkinson, Becky Hill"
               required
             />
-          </div>
+         
           <%- include("partials/dropdowns/keyMoodDropdown.ejs", {track, moods, keys}) %>
-          <label for="bpm">BPM: </label>
+          <label for="bpm">BPM</label>
           <input type="number" name="bpm" id="bpm" value="<%= track.bpm %>" />
 
           <fieldset>

@@ -10,6 +10,11 @@
   box-sizing: border-box;
 }
 
+body,
+html {
+  height: 100%;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -22,10 +27,14 @@ body {
   font-style: normal;
 }
 
+body > div {
+  padding: 20px;
+  width: 700px;
+}
+
 main {
   display: flex;
   flex-direction: column;
-  width: 700px;
 }
 
 header {
@@ -83,6 +92,25 @@ button.add-track {
 
 } */
 
+form.track-form {
+  display: grid;
+  gap: 10px;
+}
+
+input {
+  background-color: inherit;
+  color: inherit;
+  border: 2px solid hsl(240, 11%, 33%);
+  padding: 8px 4px;
+
+  font: inherit;
+}
+
+.track-form input,
+.track-form select {
+  margin-bottom: 10px;
+}
+
 .filter {
   display: inherit;
   margin-bottom: 20px;
@@ -95,7 +123,8 @@ button.add-track {
   gap: 10px;
 }
 
-.filter select {
+.filter select,
+form select {
   padding: 8px 4px;
   border: none;
   border-radius: 2px;
@@ -107,7 +136,8 @@ button.add-track {
   font: inherit;
 }
 
-.filter option {
+.filter option,
+form option {
   background-color: var(--dropdown-background);
   color: var(--text-color);
 }
