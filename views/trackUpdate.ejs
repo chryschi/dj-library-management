@@ -46,13 +46,15 @@
           <label for="bpm">BPM</label>
           <input type="number" name="bpm" id="bpm" value="<%= track.bpm %>" />
 
-          <fieldset>
-            <legend>Choose purchased file formats:</legend>
+          
+          <div>Choose purchased file formats</div>
 
-            <label for="mp3">mp3</label>
+          <div class="checkbox-option-container">
             <input type="checkbox" name="purchasedMp3" id="mp3" value="true" <%= track.mp3 ? "checked" : "" %>/>
-
-            <label for="lossless">lossless</label>
+            <label for="mp3">mp3</label>
+          </div>
+           
+          <div class="checkbox-option-container">
             <input
               type="checkbox"
               name="purchasedLossless"
@@ -60,7 +62,8 @@
               value="true"
               <%= track.lossless ? "checked" : "" %>
             />
-          </fieldset>
+            <label for="lossless">lossless</label>
+          </div>
 
           <button class="form-submit" type="submit">Update Track Info</button>
         </form>

@@ -111,6 +111,48 @@ input {
   margin-bottom: 10px;
 }
 
+.checkbox-option-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.track-form input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--base-color);
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  font: inherit;
+  color: var(--text-color);
+
+  height: 16px;
+  width: 16px;
+  min-width: 16px;
+
+  border: 2px solid var(--text-color);
+  border-radius: 50%;
+
+  display: grid;
+  place-content: center;
+}
+
+.track-form input[type="checkbox"]::before {
+  content: "";
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: var(--text-color);
+  transform: scale(0);
+}
+
+.track-form input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
 .filter {
   display: inherit;
   margin-bottom: 20px;
