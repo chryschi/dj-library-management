@@ -1,3 +1,9 @@
+:root {
+  --base-color: hsl(240, 10%, 14%);
+  --text-color: hsl(240, 23%, 97%);
+  --dropdown-background: hsl(240, 10%, 10%);
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -7,8 +13,8 @@
 body {
   display: flex;
   justify-content: center;
-  background-color: hsl(240, 10%, 14%);
-  color: hsl(240, 23%, 97%);
+  background-color: var(--base-color);
+  color: var(--text-color);
 
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
@@ -46,7 +52,7 @@ button:hover {
 
 a {
   text-decoration: none;
-  color: hsl(240, 23%, 97%);
+  color: var(--text-color);
 }
 
 li {
@@ -61,26 +67,50 @@ main > div {
   margin-bottom: 40px;
 }
 
-.filter {
-  display: inherit;
-
-  margin-bottom: 20px;
-}
-
 button.add-track {
   background-color: hsl(261, 84%, 52%);
   padding: 14px;
   font-weight: 500;
   border-radius: 2px;
 }
+
 .add-track a {
-  color: hsl(240, 23%, 97%);
+  color: var(--text-color);
 }
 
 /* Form styling */
 /* button .form-submit {
 
 } */
+
+.filter {
+  display: inherit;
+  margin-bottom: 20px;
+  gap: 25px;
+}
+
+.filter div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter select {
+  padding: 8px 4px;
+  border: none;
+  border-radius: 2px;
+
+  box-shadow: 0 5px 5px 2px rgba(0, 0, 0, 0.4);
+  background-color: inherit;
+  color: inherit;
+
+  font: inherit;
+}
+
+.filter option {
+  background-color: var(--dropdown-background);
+  color: var(--text-color);
+}
 
 /* Track list styling */
 
