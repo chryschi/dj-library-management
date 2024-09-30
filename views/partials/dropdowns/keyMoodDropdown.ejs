@@ -1,5 +1,5 @@
 
-    <label for="mood-select">Mood: </label>
+    <label for="mood-select">Mood</label>
     <select name="moodId" id="mood-select">
       <% moods.map((mood) => { %>
       <option value="<%= mood.id %>" <%= track.moodId == mood.id ? "selected" : "" %> ><%= mood.mood %></option>

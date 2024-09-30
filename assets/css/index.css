@@ -2,6 +2,7 @@
   --base-color: hsl(240, 10%, 14%);
   --text-color: hsl(240, 23%, 97%);
   --dropdown-background: hsl(240, 10%, 10%);
+  --accent-color: hsl(261, 84%, 52%);
 }
 
 * {
@@ -10,9 +11,9 @@
   box-sizing: border-box;
 }
 
-body,
-html {
-  height: 100%;
+html,
+body {
+  width: 100%;
 }
 
 body {
@@ -77,7 +78,7 @@ main > div {
 }
 
 button.add-track {
-  background-color: hsl(261, 84%, 52%);
+  background-color: var(--accent-color);
   padding: 14px;
   font-weight: 500;
   border-radius: 2px;
@@ -88,9 +89,15 @@ button.add-track {
 }
 
 /* Form styling */
-/* button .form-submit {
+button.form-submit {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  padding: 14px;
+  margin-top: 20px;
+  border-radius: 2px;
 
-} */
+  justify-self: end;
+}
 
 form.track-form {
   display: grid;
@@ -101,6 +108,7 @@ input {
   background-color: inherit;
   color: inherit;
   border: 2px solid hsl(240, 11%, 33%);
+  border-radius: 2px;
   padding: 8px 4px;
 
   font: inherit;
@@ -182,6 +190,12 @@ form select {
 form option {
   background-color: var(--dropdown-background);
   color: var(--text-color);
+}
+
+.filter select:focus,
+:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent-color);
 }
 
 /* Track list styling */
