@@ -71,6 +71,7 @@ li {
 
 nav {
   height: 50px;
+  display: flex;
 }
 
 main > div {
@@ -83,6 +84,17 @@ a.add-track {
   padding: 14px;
   font-weight: 500;
   border-radius: 2px;
+}
+
+a.nav-back {
+  display: flex;
+  align-self: flex-start;
+
+  color: hsl(240, 6%, 57%);
+}
+
+a.nav-back:hover {
+  color: hsl(240, 11%, 93%);
 }
 
 /* Form styling */
@@ -215,6 +227,12 @@ form option {
   box-shadow: 0 0 0 2px var(--accent-color);
 }
 
+a.nav-back:focus,
+button.form-submit:focus {
+  box-shadow: none;
+  outline: none;
+}
+
 .search-input input:focus {
   box-shadow: none;
 }
@@ -224,10 +242,15 @@ form option {
   box-shadow: 0 0 0 2px var(--accent-color);
 }
 
-a.add-track:focus,
-button.form-submit:focus {
+a.add-track:focus-visible,
+button.form-submit:focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px var(--text-color);
+}
+
+a.nav-back:focus-visible {
+  box-shadow: 0 0 0 2px var(--accent-color);
+  outline: none;
 }
 
 a.add-track:active,
