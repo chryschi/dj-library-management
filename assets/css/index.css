@@ -111,6 +111,26 @@ input {
   font: inherit;
 }
 
+.search-input {
+  border-radius: 2px;
+  border: 2px solid hsl(240, 11%, 33%);
+  color: hsl(240, 8%, 32%);
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 5px;
+}
+
+.search-input label {
+  display: inherit;
+  align-items: center;
+}
+
+.search-input input {
+  border: none;
+}
+
 .track-form input,
 .track-form select {
   margin-bottom: 10px;
@@ -191,6 +211,15 @@ form option {
 
 .filter select:focus,
 :focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent-color);
+}
+
+.search-input input:focus {
+  box-shadow: none;
+}
+
+.search-input:focus-within {
   outline: none;
   box-shadow: 0 0 0 2px var(--accent-color);
 }
