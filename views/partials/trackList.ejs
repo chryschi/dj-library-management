@@ -8,7 +8,7 @@
     <div><%= track.mp3 ? " mp3": "" %></div>
     <div><%= track.lossless ? " lossless": ""%></div>
     <div class="dropdown-menu-container">
-      <button>...</button>
+      <button onclick="toggleDropdown(this, event)">...</button>
       <div class="dropdown-menu">
         <a href="/tracks/<%= track.id %>">Show track details</a>
         <a href="/tracks/<%= track.id %>/update">Change track info</a>

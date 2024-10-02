@@ -77,15 +77,12 @@ main > div {
   margin-bottom: 40px;
 }
 
-button.add-track {
+a.add-track {
   background-color: var(--accent-color);
+  color: var(--text-color);
   padding: 14px;
   font-weight: 500;
   border-radius: 2px;
-}
-
-.add-track a {
-  color: var(--text-color);
 }
 
 /* Form styling */
@@ -198,6 +195,18 @@ form option {
   box-shadow: 0 0 0 2px var(--accent-color);
 }
 
+a.add-track:focus,
+button.form-submit:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--text-color);
+}
+
+a.add-track:active,
+button.form-submit:active {
+  outline: none;
+  background-color: hsl(288, 89%, 35%);
+}
+
 /* Track list styling */
 
 .trackList li {
@@ -227,7 +236,7 @@ form option {
   background-color: hsl(240, 10%, 10%);
 }
 
-.dropdown-menu-container:hover .dropdown-menu {
+.dropdown-visible {
   display: flex;
   flex-direction: column;
 
@@ -248,8 +257,10 @@ button.delete {
 }
 
 .dropdown-menu a:hover {
-  background-color: hsl(240, 10%, 4%);
+  background-color: var(--text-color);
+  color: hsl(240, 10%, 4%);
 }
+
 button.delete:hover {
   color: hsl(240, 10%, 4%);
   background-color: hsl(350, 98%, 64%);

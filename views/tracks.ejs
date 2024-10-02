@@ -16,7 +16,7 @@
       </nav>
       <header>
         <h1><%= title %></h1>
-        <button class="add-track"><a href="/tracks/create">New Track</a></button>
+        <a class="add-track" href="/tracks/create">New Track</a>
       </header>
       <main>
         <div class="searchbar">
@@ -68,6 +68,16 @@
       </main>
     </div>
     <script>
+    const toggleDropdown = (e) => {
+      // const tracks = e.parentNode.parentNode.parentNode.children;
+      // tracks.forEach((trackElement) => trackElement.classList.remove(".dropdown-visible"));      
+
+    const dropdownElement = e.parentNode.children[1];
+      // e.parentNode.children[1].classList.add("dropdown-visible");
+      dropdownElement.classList.add("dropdown-visible")
+      console.log(e.parentNode.parentNode.parentNode.children);
+      }
+
       const searchElement = document.querySelector("#search-track");
       searchElement.onchange = (e) =>
         (location.href = `/tracks/?str=${searchElement.value}&keyId=${keyDropdown.value}&moodId=${moodDropdown.value}`);
@@ -80,6 +90,7 @@
       keyDropdown.onchange = (e) =>
         (location.href = `/tracks/?str=${searchElement.value}&keyId=${e.target.value}&moodId=${moodDropdown.value}`);
 
+      
     </script>
   </body>
 </html>
