@@ -54,6 +54,11 @@ header {
 button {
   border: none;
   font: inherit;
+  background-color: transparent;
+}
+
+button.options {
+  color: var(--text-color);
 }
 
 button:hover {
@@ -271,12 +276,22 @@ button.form-submit:active {
   box-shadow: 0 5px 5px 2px rgba(0, 0, 0, 0.4);
 }
 
+li > div {
+  display: flex;
+  align-items: center;
+}
+
 /* Options menu (dropdown) for track*/
 
 .dropdown-menu-container {
   display: flex;
   justify-content: center;
   position: relative;
+}
+
+.dropdown-menu-container > button {
+  display: flex;
+  justify-content: center;
 }
 
 .dropdown-menu {
