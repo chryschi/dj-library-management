@@ -96,10 +96,8 @@
 
       const closeDropdown = () => {
         const dropdowns = Array.from(document.querySelectorAll(".dropdown-visible"));
-        console.log(dropdowns.length);
         if (dropdowns.length !== 0) {
           dropdowns.forEach((dropdown) => dropdown.classList.remove("dropdown-visible"));
-          console.log("remove dropdown");
         }
       };
 

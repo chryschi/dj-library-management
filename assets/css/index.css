@@ -226,16 +226,10 @@ form option {
   color: var(--text-color);
 }
 
-.filter select:focus,
-:focus {
+select:focus,
+input:focus {
   outline: none;
   box-shadow: 0 0 0 2px var(--accent-color);
-}
-
-a.nav-back:focus,
-button.form-submit:focus {
-  box-shadow: none;
-  outline: none;
 }
 
 .search-input input:focus {
@@ -253,7 +247,8 @@ button.form-submit:focus-visible {
   box-shadow: 0 0 0 2px var(--text-color);
 }
 
-a.nav-back:focus-visible {
+a.nav-back:focus-visible,
+button.options:focus-visible {
   box-shadow: 0 0 0 2px var(--accent-color);
   outline: none;
 }
