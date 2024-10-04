@@ -77,13 +77,13 @@
     </div>
     <script>
     const toggleDropdown = (e) => {
-      // const tracks = e.parentNode.parentNode.parentNode.children;
-      // tracks.forEach((trackElement) => trackElement.classList.remove(".dropdown-visible"));      
-
-    const dropdownElement = e.parentNode.children[1];
-      // e.parentNode.children[1].classList.add("dropdown-visible");
-      dropdownElement.classList.add("dropdown-visible")
-      console.log(e.parentNode.parentNode.parentNode.children);
+      const tracks = Array.from(e.parentNode.parentNode.parentNode.children);
+      tracks.forEach((trackElement) => trackElement.querySelector(".dropdown-menu").classList.remove("dropdown-visible"));      
+      
+      const dropdownElement = e.parentNode.children[1];
+      dropdownElement.classList.add("dropdown-visible");
+     
+      console.log(dropdownElement);
       }
 
       const searchElement = document.querySelector("#search-track");
