@@ -76,28 +76,36 @@
       </main>
     </div>
     <script>
-      const toggleDropdown = (e) => {
-        const dropdownElement = e.parentNode.children[1];
-
+      const toggleDropdown = (event) => {
+        const dropdownElement = event.target.parentNode.parentNode.children[1];
+        
         if (dropdownElement.classList.contains("dropdown-visible")) {
           dropdownElement.classList.remove("dropdown-visible");
         } else {
           const dropdowns = Array.from(document.querySelectorAll(".dropdown-menu"));
-          dropdowns.forEach((dropdown) => dropdown.classList.remove("dropdown-visible"));      
-          
-          // const dropdownElement = e.parentNode.children[1];
+          dropdowns.forEach((dropdown) => dropdown.classList.remove("dropdown-visible"));        
           dropdownElement.classList.add("dropdown-visible");
         }
-        console.log(dropdownElement);
+
+        event.stopPropagation();
       };
 
-      // const closeDropdown = () => {
-      //   const dropdowns = Array.from(document.querySelectorAll(".dropdown-menu"));
-      //   if (dropdowns.length === 0) {
-      //     dropdowns.forEach((dropdown) => dropdown.classList.remove("dropdown-visible"));
-      //   }
-      // }
+      const optionsButtons = document.querySelectorAll(".options");
+      optionsButtons.forEach((optionsButton) => optionsButton.addEventListener("click", (event) => toggleDropdown(event)));
 
+
+      const closeDropdown = () => {
+        const dropdowns = Array.from(document.querySelectorAll(".dropdown-visible"));
+        console.log(dropdowns.length);
+        if (dropdowns.length !== 0) {
+          dropdowns.forEach((dropdown) => dropdown.classList.remove("dropdown-visible"));
+          console.log("remove dropdown");
+        }
+      };
+
+      window.addEventListener('click', closeDropdown);
+
+    
       const searchElement = document.querySelector("#search-track");
       searchElement.onchange = (e) =>
         (location.href = `/tracks/?str=${searchElement.value}&keyId=${keyDropdown.value}&moodId=${moodDropdown.value}`);
@@ -109,8 +117,6 @@
       const keyDropdown = document.querySelector("#key-select");
       keyDropdown.onchange = (e) =>
         (location.href = `/tracks/?str=${searchElement.value}&keyId=${e.target.value}&moodId=${moodDropdown.value}`);
-
-      // window.addEventListener('click', closeDropdown);
     </script>
   </body>
 </html>
