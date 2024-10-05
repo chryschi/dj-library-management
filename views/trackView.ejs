@@ -12,12 +12,61 @@
     />
   </head>
   <body>
-    <button><a href="/tracks">Back</a></button>
-    <h1><%= title %></h1>
-    <p>
-      <%= track.title %>, <%= track.artist %>, <%= track.key %>, <%= track.bpm
-      %>bpm <%= track.mp3 ? ", mp3": "" %> <%= track.lossless ? ", lossless":
-      ""%>
-    </p>
+    <div>
+      <nav>
+        <a class="nav-back" href="/tracks">
+          <span class="material-symbols-outlined"> arrow_back </span>
+        </a>
+      </nav>
+      <header>
+        <h1><%= title %></h1>
+      </header>
+      <main>
+        <div>
+          <div>
+            <p>Title</p>
+            <div><%= track.title %></div>
+          </div>
+          <div>
+            <p>Artist</p>
+            <div><%= track.artist %></div>
+          </div>
+          <div>
+            <p>Key</p>
+            <div><%= track.key %></div>
+          </div>
+          <div>
+            <p>Bpm</p>
+            <div><%= track.bpm %></div>
+          </div>
+          <div>
+            <p>Mood</p>
+            <div><%= track.mood %></div>
+          </div>
+          <div>
+            <p>Purchased</p>
+            <div>
+              <%= track.mp3 ? "mp3": "" %>
+              <%= track.lossless ? ", lossless": ""%>
+            </div>
+          </div>
+          <div class="cover-art"></div>
+        </div>
+        <ul>
+          <li>
+            <button>
+              <span class="material-symbols-outlined"> more_vert </span>
+              <div>Double Drops</div>
+            </button>
+          </li>
+          <li>
+            <button>
+              <span class="material-symbols-outlined"> more_vert </span>
+              <div>Matching Songs</div>
+            </button>
+          </li>
+        </ul>
+      </main>
+    </div>
   </body>
 </html>
