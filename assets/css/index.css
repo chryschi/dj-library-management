@@ -102,6 +102,40 @@ a.nav-back:hover {
   color: hsl(240, 11%, 93%);
 }
 
+/* Track details styling */
+.track-details-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.track-details {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 2fr;
+}
+
+ul.track-relations li button {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+  color: var(--text-color);
+}
+
+ul.track-relations li button:disabled {
+  color: hsl(0, 0%, 41%);
+}
+
+ul.track-relations li {
+  margin-bottom: 8px;
+}
+
+.cover-art {
+  width: 200px;
+  height: 200px;
+}
+
 /* Form styling */
 button.form-submit {
   background-color: var(--accent-color);
