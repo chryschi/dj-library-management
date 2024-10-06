@@ -1,8 +1,10 @@
 <ul class="trackList">
   <% tracks.map((track) =>{ %>
   <li>
-    <div><%= track.title %></div>
-    <div><%= track.artist %></div>
+    <div class="track-title-artist">
+      <div><%= track.title %></div>
+      <div class="tracklist-artist"><%= track.artist %></div>
+    </div>
     <div><%= track.key %></div>
     <div><%= track.bpm %>bpm</div>
     <div><%= track.mp3 ? " mp3": "" %></div>

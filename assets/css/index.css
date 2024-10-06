@@ -315,7 +315,7 @@ button.form-submit:active {
 
 .trackList li {
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr 1fr 1fr 1fr 0.5fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 0.5fr;
 
   padding: 20px 10px;
   margin-bottom: 20px;
@@ -326,6 +326,16 @@ button.form-submit:active {
 li > div {
   display: flex;
   align-items: center;
+}
+
+.track-title-artist {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.tracklist-artist {
+  color: hsl(0, 0%, 41%);
+  font-size: 0.8rem;
 }
 
 /* Options menu (dropdown) for track*/
@@ -427,5 +437,17 @@ button.delete:hover {
 
   .cover-art::after {
     content: none;
+  }
+
+  /* track list */
+  .track-title-artist {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .tracklist-artist {
+    color: var(--text-color);
+    font-size: 1rem;
   }
 }
