@@ -37,11 +37,10 @@
               placeholder="Search Track"
               aria-label="Search through all tracks"
             />
-        </div>
+          </div>
         </div>
 
         <div class="filter">
-          <div>
             <label for="mood-select">Mood </label>
             <select name="moodId" id="mood-select">
               <option value="">any</option>
@@ -53,8 +52,7 @@
               </option>
               <% }); %>
             </select>
-          </div>
-          <div>
+       
             <label for="key-select">Key</label>
             <select name="keyId" id="key-select">
               <option value="">any</option>
@@ -66,10 +64,8 @@
                 <%= key.key %>/<%= key.key_camelot%>
               </option>
               <% }); %>
-            </select>
-          </div>
+            </select>          
         </div>
-
         <% if (tracks.length === 0) { %>
           <p>No tracks found</p>
         <% } else { %>

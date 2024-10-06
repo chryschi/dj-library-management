@@ -3,6 +3,7 @@
   --text-color: hsl(240, 23%, 97%);
   --dropdown-background: hsl(240, 10%, 10%);
   --accent-color: hsl(261, 84%, 52%);
+  font-size: 14px;
 }
 
 * {
@@ -31,6 +32,7 @@ body {
 body > div {
   padding: 20px;
   width: 700px;
+  min-width: 300px;
 }
 
 main {
@@ -43,7 +45,7 @@ header {
   justify-content: space-between;
   align-items: center;
 
-  padding: 30px 0;
+  padding: 20px 0;
 
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
@@ -75,7 +77,6 @@ li {
 }
 
 nav {
-  height: 50px;
   display: flex;
 }
 
@@ -243,14 +244,10 @@ input {
 }
 
 .filter {
-  display: inherit;
-  margin-bottom: 20px;
-  gap: 25px;
-}
-
-.filter div {
-  display: flex;
+  display: grid;
+  grid-template-columns: 50px 2fr;
   align-items: center;
+  margin-bottom: 20px;
   gap: 10px;
 }
 
@@ -315,7 +312,8 @@ button.form-submit:active {
 
 .trackList li {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 0.5fr;
+  grid-template-columns: 2fr 1fr 1fr 0.5fr 1fr 0.5fr;
+  column-gap: 10px;
 
   padding: 20px 10px;
   margin-bottom: 20px;
@@ -391,6 +389,14 @@ button.delete:hover {
 }
 
 @media screen and (min-width: 700px) {
+  :root {
+    font-size: 18px;
+  }
+
+  header {
+    padding: 30px 0;
+  }
+
   /* update/create form */
   .track-form {
     grid-template-columns: 1fr 2fr;
@@ -440,6 +446,10 @@ button.delete:hover {
   }
 
   /* track list */
+  .trackList li {
+    grid-template-columns: 3fr 1fr 1fr 0.5fr 1fr 0.5fr;
+  }
+
   .track-title-artist {
     display: grid;
     grid-template-columns: 1fr 1fr;
