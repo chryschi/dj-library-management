@@ -112,7 +112,7 @@ a.nav-back:hover {
 .track-details {
   display: grid;
   gap: 10px;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 3fr 2fr;
 }
 
 ul.track-relations li button {
@@ -132,8 +132,14 @@ ul.track-relations li {
 }
 
 .cover-art {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 200px;
   height: 200px;
+  background-color: var(--accent-color);
+  color: var(--text-color);
 }
 
 /* Form styling */
