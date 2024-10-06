@@ -103,16 +103,11 @@ a.nav-back:hover {
 }
 
 /* Track details styling */
-.track-details-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-}
 
 .track-details {
   display: grid;
   gap: 10px;
-  grid-template-columns: 3fr 2fr;
+  grid-template-columns: 2fr 3fr;
 }
 
 ul.track-relations li button {
@@ -136,10 +131,24 @@ ul.track-relations li {
   justify-content: center;
   align-items: center;
 
-  width: 200px;
-  height: 200px;
+  position: absolute;
+  z-index: -10;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
   background-color: var(--accent-color);
   color: var(--text-color);
+}
+
+.cover-art::after {
+  content: "";
+  position: absolute;
+  background-color: hsla(0, 0%, 0%, 0.644);
+  backdrop-filter: blur(2px);
+  height: 100%;
+  width: 100%;
 }
 
 /* Form styling */
@@ -372,6 +381,7 @@ button.delete:hover {
 }
 
 @media screen and (min-width: 700px) {
+  /* update/create form */
   .track-form {
     grid-template-columns: 1fr 2fr;
     align-items: center;
@@ -389,5 +399,33 @@ button.delete:hover {
 
   .form-purchased {
     grid-template-columns: 1fr 1fr;
+  }
+
+  /* track details */
+  .track-details-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+  }
+
+  .track-details {
+    column-gap: 30px;
+  }
+
+  .cover-art {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: static;
+
+    width: 200px;
+    height: 200px;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+  }
+
+  .cover-art::after {
+    content: none;
   }
 }
