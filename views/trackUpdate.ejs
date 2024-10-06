@@ -53,21 +53,22 @@
 
           
           <div>Choose purchased file formats</div>
-
-          <div class="checkbox-option-container">
-            <input type="checkbox" name="purchasedMp3" id="mp3" value="true" <%= track.mp3 ? "checked" : "" %>/>
-            <label for="mp3">mp3</label>
-          </div>
+          <div class="form-purchased">
+            <div class="checkbox-option-container">
+              <input type="checkbox" name="purchasedMp3" id="mp3" value="true" <%= track.mp3 ? "checked" : "" %>/>
+              <label for="mp3">mp3</label>
+            </div>
            
-          <div class="checkbox-option-container">
-            <input
-              type="checkbox"
-              name="purchasedLossless"
-              id="lossless"
-              value="true"
-              <%= track.lossless ? "checked" : "" %>
-            />
-            <label for="lossless">lossless</label>
+            <div class="checkbox-option-container">
+              <input
+                type="checkbox"
+                name="purchasedLossless"
+                id="lossless"
+                value="true"
+                <%= track.lossless ? "checked" : "" %>
+              />
+              <label for="lossless">lossless</label>
+            </div>
           </div>
 
           <button class="form-submit" type="submit">Save Changes</button>

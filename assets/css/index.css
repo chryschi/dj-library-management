@@ -149,8 +149,6 @@ button.form-submit {
   padding: 14px;
   margin-top: 20px;
   border-radius: 2px;
-
-  justify-self: end;
 }
 
 form.track-form {
@@ -299,6 +297,11 @@ button.form-submit:active {
   background-color: hsl(288, 89%, 35%);
 }
 
+.form-purchased {
+  display: grid;
+  gap: 10px;
+}
+
 /* Track list styling */
 
 .trackList li {
@@ -366,4 +369,25 @@ button.delete {
 button.delete:hover {
   color: hsl(240, 10%, 4%);
   background-color: hsl(350, 98%, 64%);
+}
+
+@media screen and (min-width: 700px) {
+  .track-form {
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+  }
+
+  .track-form input,
+  .track-form select {
+    margin-bottom: 0px;
+  }
+
+  button.form-submit {
+    grid-column: 2;
+    justify-self: end;
+  }
+
+  .form-purchased {
+    grid-template-columns: 1fr 1fr;
+  }
 }
