@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/assets/css/index.css" />
 
-    <!-- Google fonts -->
+    <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -31,13 +31,14 @@
         <h1><%= title %></h1>
       </header>
       <main>
-        <form
-          class="track-form"
-          action="/tracks/<%= track.id %>/update"
-          method="POST"
-        >
+        <form class="track-form" action="/tracks/create" method="POST">
           <%- include("partials/formContent.ejs", {track, moods, keys}) %>
-          <button class="form-submit" type="submit">Save Changes</button>
+          <ul>
+            <% errors.forEach((error) => { %>
+            <li><%= error.msg %></li>
+            <% }) %>
+          </ul>
+          <button class="form-submit" type="submit">Save Track Info</button>
         </form>
       </main>
     </div>

@@ -1,4 +1,25 @@
 const db = require("../db/queries");
+const { body, validationResult } = require("express-validator");
+
+const alphanumErr = "must only contain letters or numbers";
+const lengthErr = "must be between 1 and 30 characters";
+const bpmErr = "must be between 0 and 300";
+
+const validateUser = [
+  body("title")
+    .trim()
+    .isAlphanumeric()
+    .withMessage(`Title ${alphanumErr}`)
+    .isLength({ min: 1, max: 30 })
+    .withMessage(`Title ${lengthErr}`),
+  body("artist")
+    .trim()
+    .isAlphanumeric()
+    .withMessage(`Title ${alphanumErr}`)
+    .isLength({ min: 1, max: 30 })
+    .withMessage(`Title ${lengthErr}`),
+  body("bpm").isInt({ min: 0, max: 300 }).withMessage(`Bpm ${bpmErr}`),
+];
 
 const convertUndefinedToFalse = (variable) =>
   variable === undefined ? false : variable;
@@ -41,26 +62,49 @@ exports.createTrackGet = async (req, res) => {
   res.render("trackCreate", { title: "Create New Track", moods, keys });
 };
 
-exports.createTrackPost = async (req, res) => {
-  let { title, artist, bpm, purchasedMp3, purchasedLossless, moodId, keyId } =
-    req.body;
+exports.createTrackPost = [
+  validateUser,
+  async (req, res) => {
+    const errors = validationResult(req);
+    let { title, artist, bpm, purchasedMp3, purchasedLossless, moodId, keyId } =
+      req.body;
+    if (!errors.isEmpty()) {
+      const moods = await db.getAllMoods();
+      const keys = await db.getAllKeys();
+      return res.status(400).render("trackCreateValidate", {
+        title: "Create New Track",
+        moods,
+        keys,
+        track: {
+          title,
+          artist,
+          bpm,
+          purchasedMp3,
+          purchasedLossless,
+          moodId,
+          keyId,
+        },
+        errors: errors.array(),
+      });
+    }
 
-  bpm = bpm === "" ? null : bpm;
-  purchasedMp3 = convertUndefinedToFalse(purchasedMp3);
-  purchasedLossless = convertUndefinedToFalse(purchasedLossless);
+    bpm = bpm === "" ? null : bpm;
+    purchasedMp3 = convertUndefinedToFalse(purchasedMp3);
+    purchasedLossless = convertUndefinedToFalse(purchasedLossless);
 
-  await db.insertTrack({
-    title,
-    artist,
-    bpm,
-    mp3: purchasedMp3,
-    lossless: purchasedLossless,
-    moodId,
-    keyId,
-  });
+    await db.insertTrack({
+      title,
+      artist,
+      bpm,
+      mp3: purchasedMp3,
+      lossless: purchasedLossless,
+      moodId,
+      keyId,
+    });
 
-  res.redirect("/");
-};
+    res.redirect("/");
+  },
+];
 
 exports.updateTrackGet = async (req, res) => {
   const trackId = req.params.trackId;

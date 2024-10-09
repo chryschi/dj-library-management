@@ -1,0 +1,43 @@
+<label for="title">Title</label>
+<input
+  type="text"
+  name="title"
+  id="title"
+  placeholder="Afterglow"
+  value="<%= track.title %>"
+  required
+/>
+
+<label for="artist">Artist(s) </label>
+<input
+  type="text"
+  name="artist"
+  id="artist"
+  placeholder="Wilkinson, Becky Hill"
+  value="<%= track.artist %>"
+  required
+/>
+
+<%- include("dropdowns/keyMoodDropdown.ejs", {track, moods, keys}) %>
+
+<label for="bpm">BPM</label>
+<input type="number" min="0" name="bpm" id="bpm" value="<%= track.bpm %>" />
+
+<div>Choose purchased file formats</div>
+<div class="form-purchased">
+  <div class="checkbox-option-container">
+    <input type="checkbox" name="purchasedMp3" id="mp3" value="true" <%= track.mp3 ? "checked" : "" %> />
+    <label for="mp3">mp3</label>
+  </div>
+
+  <div class="checkbox-option-container">
+    <input
+      type="checkbox"
+      name="purchasedLossless"
+      id="lossless"
+      value="true"
+      <%= track.lossless ? "checked" : "" %>
+    />
+    <label for="lossless">lossless</label>
+  </div>
+</div>
