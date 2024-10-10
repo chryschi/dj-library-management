@@ -27,7 +27,6 @@ const convertUndefinedToFalse = (variable) =>
 exports.getAllIndexInfo = async (req, res) => {
   let tracks;
   const { str, keyId, moodId } = req.query;
-  console.log(req.query);
 
   if (str !== undefined || keyId !== undefined || moodId !== undefined) {
     tracks = await db.getTracksBySearch({ str, keyId, moodId });
@@ -39,7 +38,6 @@ exports.getAllIndexInfo = async (req, res) => {
 
   const keys = await db.getAllKeys();
   const moods = await db.getAllMoods();
-  console.log(tracks);
 
   res.render("tracks", {
     title: "DJ Library",
