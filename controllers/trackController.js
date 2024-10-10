@@ -2,6 +2,7 @@ const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
 
 const alphanumErr = "must only contain letters or numbers.";
+const artistErr = "must only contain letters, numbers or commas.";
 const lengthErr = "must be between 1 and 30 characters.";
 const bpmErr = "must be between 0 and 300.";
 
@@ -14,9 +15,9 @@ const validateUser = [
     .withMessage(`Title ${lengthErr}`),
   body("artist")
     .trim()
-    .isAlphanumeric()
-    .withMessage(`Artist name ${alphanumErr}`)
-    .isLength({ min: 1, max: 30 })
+    .matches(/^[\w, ]+$/)
+    .withMessage(`Artist name ${artistErr}`)
+    .isLength({ min: 1, max: 50 })
     .withMessage(`Artist name ${lengthErr}`),
   body("bpm").isInt({ min: 0, max: 300 }).withMessage(`Bpm ${bpmErr}`),
 ];
