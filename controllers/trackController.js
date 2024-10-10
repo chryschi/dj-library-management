@@ -88,7 +88,6 @@ exports.createTrackPost = [
       });
     }
 
-    bpm = bpm === "" ? null : bpm;
     purchasedMp3 = convertUndefinedToFalse(purchasedMp3);
     purchasedLossless = convertUndefinedToFalse(purchasedLossless);
 
@@ -122,27 +121,51 @@ exports.updateTrackGet = async (req, res) => {
   });
 };
 
-exports.updateTrackPost = async (req, res) => {
-  const trackId = req.params.trackId;
-  let { title, artist, bpm, purchasedMp3, purchasedLossless, moodId, keyId } =
-    req.body;
-  bpm = bpm === "" ? null : bpm;
-  purchasedMp3 = convertUndefinedToFalse(purchasedMp3);
-  purchasedLossless = convertUndefinedToFalse(purchasedLossless);
+exports.updateTrackPost = [
+  validateUser,
+  async (req, res) => {
+    const errors = validationResult(req);
+    const trackId = req.params.trackId;
+    let { title, artist, bpm, purchasedMp3, purchasedLossless, moodId, keyId } =
+      req.body;
 
-  await db.updateTrack({
-    id: trackId,
-    title,
-    artist,
-    bpm,
-    mp3: purchasedMp3,
-    lossless: purchasedLossless,
-    moodId,
-    keyId,
-  });
+    purchasedMp3 = convertUndefinedToFalse(purchasedMp3);
+    purchasedLossless = convertUndefinedToFalse(purchasedLossless);
 
-  res.redirect("/");
-};
+    if (!errors.isEmpty()) {
+      const moods = await db.getAllMoods();
+      const keys = await db.getAllKeys();
+      return res.status(400).render("trackUpdateValidate", {
+        title: "Update Track Info",
+        moods,
+        keys,
+        track: {
+          title,
+          artist,
+          bpm,
+          purchasedMp3,
+          purchasedLossless,
+          moodId,
+          keyId,
+        },
+        errors: errors.array(),
+      });
+    }
+
+    await db.updateTrack({
+      id: trackId,
+      title,
+      artist,
+      bpm,
+      mp3: purchasedMp3,
+      lossless: purchasedLossless,
+      moodId,
+      keyId,
+    });
+
+    res.redirect("/");
+  },
+];
 
 exports.deleteTrackPost = async (req, res) => {
   await db.deleteTrack(req.params.trackId);
