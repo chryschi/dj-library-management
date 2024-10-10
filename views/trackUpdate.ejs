@@ -36,7 +36,7 @@
           action="/tracks/<%= track.id %>/update"
           method="POST"
         >
-          <%- include("partials/formContent.ejs", {track, moods, keys}) %>
+          <%- include("partials/formValidated.ejs", {track, moods, keys}) %>
           <button class="form-submit" type="submit">Save Changes</button>
         </form>
       </main>

@@ -77,8 +77,8 @@ exports.createTrackPost = [
           title,
           artist,
           bpm,
-          purchasedMp3,
-          purchasedLossless,
+          mp3: purchasedMp3,
+          lossless: purchasedLossless,
           moodId,
           keyId,
         },
@@ -133,7 +133,7 @@ exports.updateTrackPost = [
     if (!errors.isEmpty()) {
       const moods = await db.getAllMoods();
       const keys = await db.getAllKeys();
-      return res.status(400).render("trackUpdateValidate", {
+      return res.status(400).render("trackUpdate", {
         title: "Update Track Info",
         moods,
         keys,
@@ -141,10 +141,11 @@ exports.updateTrackPost = [
           title,
           artist,
           bpm,
-          purchasedMp3,
-          purchasedLossless,
+          mp3: purchasedMp3,
+          lossless: purchasedLossless,
           moodId,
           keyId,
+          id: trackId,
         },
         errors: errors.array(),
       });

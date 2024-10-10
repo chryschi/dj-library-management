@@ -32,12 +32,7 @@
       </header>
       <main>
         <form class="track-form" action="/tracks/create" method="POST">
-          <%- include("partials/formContent.ejs", {track, moods, keys}) %>
-          <ul class="error">
-            <% errors.forEach((error) => { %>
-            <li><%= error.msg %></li>
-            <% }) %>
-          </ul>
+          <%- include("partials/formValidated.ejs", {track, moods, keys}) %>
           <button class="form-submit" type="submit">Save Track Info</button>
         </form>
       </main>
