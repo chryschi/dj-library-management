@@ -308,6 +308,10 @@ button.form-submit:active {
   gap: 10px;
 }
 
+ul.error li {
+  color: hsl(350, 98%, 64%);
+}
+
 /* Track list styling */
 
 .trackList li {
@@ -415,6 +419,10 @@ button.delete:hover {
 
   .form-purchased {
     grid-template-columns: 1fr 1fr;
+  }
+
+  ul.error {
+    grid-column: 1 / span 2;
   }
 
   /* track details */
