@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS moods (
 INSERT INTO moods (mood)
 VALUES
 ('indignant/defiant'),
-('joful/cheerful'),
+('joyful/cheerful'),
 ('sad/depressing'),
 ('amusing'),
 ('annoying'),
