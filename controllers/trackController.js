@@ -9,7 +9,7 @@ const bpmErr = "must be between 0 and 300.";
 const validateUser = [
   body("title")
     .trim()
-    .isAlphanumeric()
+    .matches(/^[\w, ]+$/)
     .withMessage(`Title ${alphanumErr}`)
     .isLength({ min: 1, max: 30 })
     .withMessage(`Title ${lengthErr}`),
