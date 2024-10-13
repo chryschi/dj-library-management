@@ -31,7 +31,7 @@ body {
 
 body > div {
   padding: 20px;
-  width: 700px;
+  width: 900px;
   min-width: 300px;
 }
 
@@ -328,6 +328,13 @@ ul.error li {
 li > div {
   display: flex;
   align-items: center;
+  white-space: nowrap;
+}
+
+.track-title-artist > div {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .track-title-artist {
@@ -462,6 +469,7 @@ button.delete:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
+    column-gap: 10px;
   }
 
   .tracklist-artist {
