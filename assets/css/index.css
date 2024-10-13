@@ -245,8 +245,10 @@ input {
 
 .filter {
   display: grid;
-  grid-template-columns: 50px 2fr;
+  grid-template-columns: repeat(auto-fit, 50px minmax(200px, 1fr));
   align-items: center;
+
+  width: 100%;
   margin-bottom: 20px;
   gap: 10px;
 }
@@ -475,5 +477,24 @@ button.delete:hover {
   .tracklist-artist {
     color: var(--text-color);
     font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 450px) {
+  .filter {
+    display: flex;
+  }
+
+  .filter select {
+    /* margin-right: 20px; */
+    flex: 1 auto;
+  }
+
+  .filter label {
+    margin-left: 1rem;
+  }
+
+  .filter label:first-child {
+    margin-left: 0;
   }
 }
